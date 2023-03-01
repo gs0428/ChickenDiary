@@ -1,1 +1,5 @@
-# ChickenDiary
+설치 라이브러리
+
+- React Navigation : https://reactnative.dev/docs/navigation
+- DateTimePicker : https://github.com/react-native-datetimepicker/datetimepicker#accentColor-optional-ios-only
+- DateTimePickerModal : https://www.npmjs.com/package/react-native-modal-datetime-picker
