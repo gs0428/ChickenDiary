@@ -62,17 +62,18 @@ export default Home = ({ navigation, route }) => {
 
   const whenToday = (e) => {
     console.log(e);
-    console.log("gd");
   };
   return (
-    <SafeAreaView>
-      <View style={{ justifyContent: "space-between", marginVertical: 20, flexDirection: "row" }}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View key="" style={{ justifyContent: "space-between", marginVertical: 20, flexDirection: "row" }}>
         <TouchableOpacity onPress={() => preMonth()}>
           <Text style={{ fontSize: 25, marginHorizontal: 20 }}>이전 달</Text>
         </TouchableOpacity>
         <Text style={{ fontSize: 25 }}>
           {year}.{month}
         </Text>
+        <Button title="Go to Profile" onPress={() => navigation.navigate("Profile")} />
+
         <TouchableOpacity onPress={() => nextMonth()}>
           <Text style={{ fontSize: 25, marginHorizontal: 20 }}>다음 달</Text>
         </TouchableOpacity>
@@ -90,110 +91,27 @@ export default Home = ({ navigation, route }) => {
         {days.map((day, index) => {
           return (
             <View style={{ flexDirection: "row" }}>
-              <TouchableOpacity
-                onPress={() => whenToday(days[index][0])}
-                style={{ width: width / 7, height: weekLen < 6 ? height / 8 : height / 9.6, alignItems: "center", borderWidth: 1, key: days[index][0] }}
-              >
-                <Text style={{ fontSize: 25 }}>{days[index][0]}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ width: width / 7, height: weekLen < 6 ? height / 8 : height / 9.6, alignItems: "center", borderWidth: 1, key: days[index][1] }}
-              >
-                <Text style={{ fontSize: 25 }}>{days[index][1]}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ width: width / 7, height: weekLen < 6 ? height / 8 : height / 9.6, alignItems: "center", borderWidth: 1, key: days[index][2] }}
-              >
-                <Text style={{ fontSize: 25 }}>{days[index][2]}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ width: width / 7, height: weekLen < 6 ? height / 8 : height / 9.6, alignItems: "center", borderWidth: 1, key: days[index][3] }}
-              >
-                <Text style={{ fontSize: 25 }}>{days[index][3]}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ width: width / 7, height: weekLen < 6 ? height / 8 : height / 9.6, alignItems: "center", borderWidth: 1, key: days[index][4] }}
-              >
-                <Text style={{ fontSize: 25 }}>{days[index][4]}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ width: width / 7, height: weekLen < 6 ? height / 8 : height / 9.6, alignItems: "center", borderWidth: 1, key: days[index][5] }}
-              >
-                <Text style={{ fontSize: 25 }}>{days[index][5]}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{ width: width / 7, height: weekLen < 6 ? height / 8 : height / 9.6, alignItems: "center", borderWidth: 1, key: days[index][6] }}
-              >
-                <Text style={{ fontSize: 25 }}>{days[index][6]}</Text>
-              </TouchableOpacity>
+              {days[index].map((day1, index1) => {
+                return (
+                  <TouchableOpacity
+                    style={{
+                      width: width / 7,
+                      height: weekLen < 6 ? height / 6.7 : height / 8.05,
+                      alignItems: "center",
+                      borderWidth: day1 === undefined ? 0 : 1,
+                      key: day1,
+                      borderColor: "tomato",
+                      // margin: 0.5,
+                    }}
+                  >
+                    <Text style={{ fontSize: 25 }}>{day1}</Text>
+                  </TouchableOpacity>
+                );
+              })}
             </View>
           );
         })}
       </View>
-      {/* <Button title="Go to Profile" onPress={() => navigation.navigate("Profile")} /> */}
     </SafeAreaView>
   );
 };
-
-// React Native Calendar Picker using react-native-calendar-picker
-// https://aboutreact.com/react-native-calendar-picker/
-
-// import React in our code
-// import React, { useState } from "react";
-// import { SafeAreaView, StyleSheet, View, Text, Dimensions } from "react-native";
-// import CalendarPicker from "react-native-calendar-picker";
-
-// export default Home = () => {
-//   const [month, setMonth] = useState("2023");
-//   const width = Dimensions.get("window").width;
-
-//   const onDateChange = (e) => {
-//     console.log(e);
-//   };
-
-//   const onMonthChange = (e) => {
-//     let word = String(e);
-//     let yearLoc = word.indexOf("20");
-//     setMonth(word.substring(yearLoc, yearLoc + 4));
-//   };
-
-//   return (
-//     <SafeAreaView>
-//       <View>
-//         <Text style={styles.titleStyle}>{month}년 치킨 일기</Text>
-//         <CalendarPicker
-//           minDate={new Date(2013, 1, 1)}
-//           maxDate={new Date(2033, 12, 3)}
-//           weekdays={["일", "월", "화", "수", "목", "금", "토"]}
-//           months={["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"]}
-//           todayBackgroundColor="grey"
-//           previousTitle="이전 달"
-//           nextTitle="다음 달"
-//           scaleFactor={width}
-//           monthTitleStyle={{ color: "black" }}
-//           yearTitleStyle={{ display: "none" }}
-//           selectedDayColor="#66ff33"
-//           selectedDayTextColor="#000000"
-//           textStyle={{
-//             fontFamily: "Cochin",
-//             color: "#000000",
-//           }}
-//           onMonthChange={onMonthChange}
-//           onDateChange={onDateChange}
-//         />
-//       </View>
-//     </SafeAreaView>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#ffffff",
-//   },
-//   titleStyle: {
-//     textAlign: "center",
-//     fontSize: 20,
-//     margin: 20,
-//   },
-// });
